@@ -1,1 +1,271 @@
-# Work
+# Work<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>朴归领航计划 · 陪伴每日记录表</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+        
+        /* Interactive editable cell styling */
+        .editable-cell {
+            transition: all 0.2s ease;
+            outline: none;
+            min-height: 2rem;
+        }
+        .editable-cell:hover {
+            background-color: #f0fdf4;
+            box-shadow: inset 0 0 0 1px #86efac;
+        }
+        .editable-cell:focus {
+            background-color: #ffffff;
+            box-shadow: inset 0 0 0 2px #16a34a, 0 2px 4px rgba(0,0,0,0.05);
+            border-radius: 0.375rem;
+        }
+
+        /* Print optimization styling */
+        @media print {
+            body {
+                background-color: #ffffff;
+                padding: 0;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .print-shadow-none {
+                box-shadow: none !important;
+                border: 1px solid #e5e7eb !important;
+            }
+            .editable-cell:hover, .editable-cell:focus {
+                background-color: transparent !important;
+                box-shadow: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8 min-h-screen flex flex-col items-center">
+
+    <!-- Action Bar (Hide in Print) -->
+    <div class="no-print w-full max-w-4xl mb-6 flex flex-wrap items-center justify-between gap-4 bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+        <div class="flex items-center gap-2">
+            <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-emerald-100 text-emerald-700">
+                <i class="fa-solid fa-pen-to-square text-sm"></i>
+            </span>
+            <div>
+                <h1 class="text-sm font-semibold text-slate-800">可编辑记录卡</h1>
+                <p class="text-xs text-slate-500">直接点击页面中的任何文字即可进行编辑调整</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <button onclick="resetData()" class="px-3 py-1.5 text-xs font-medium text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 rounded-lg transition">
+                <i class="fa-solid fa-rotate-left mr-1"></i>重置
+            </button>
+            <button onclick="window.print()" class="px-4 py-1.5 text-xs font-medium text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg shadow-sm transition flex items-center gap-1.5">
+                <i class="fa-solid fa-print"></i>打印/导出 PDF
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Card View Container -->
+    <div class="w-full max-w-4xl bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden print-shadow-none">
+        
+        <!-- Document Header -->
+        <div class="bg-gradient-to-r from-teal-800 via-emerald-800 to-teal-900 text-white p-6 md:p-8 text-center relative">
+            <p class="text-xs md:text-sm font-medium tracking-widest text-emerald-200 uppercase mb-1" contenteditable="true">
+                衡阳市旷悦心理咨询服务有限公司 · 师旷雅苑 · 朴归领航计划
+            </p>
+            <h2 class="text-2xl md:text-3xl font-bold tracking-wide mt-1" contenteditable="true">
+                朴归领航计划 · 陪伴每日记录表
+            </h2>
+            <div class="absolute right-6 top-6 opacity-10 text-white pointer-events-none">
+                <i class="fa-solid fa-heart-pulse text-6xl"></i>
+            </div>
+        </div>
+
+        <!-- Meta Information Bar -->
+        <div class="bg-slate-50 border-b border-slate-200 p-4 md:px-8 grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+            <div class="flex items-center">
+                <span class="text-slate-500 font-medium mr-2">学员姓名:</span>
+                <span class="font-semibold text-slate-800 editable-cell px-2 py-0.5 rounded" contenteditable="true">旷惠民</span>
+            </div>
+            <div class="flex items-center">
+                <span class="text-slate-500 font-medium mr-2">记录日期:</span>
+                <span class="font-semibold text-slate-800 editable-cell px-2 py-0.5 rounded" contenteditable="true">2026年10月23日</span>
+            </div>
+            <div class="flex items-center">
+                <span class="text-slate-500 font-medium mr-2">陪伴师:</span>
+                <span class="font-semibold text-slate-800 editable-cell px-2 py-0.5 rounded" contenteditable="true">旷宇轩</span>
+            </div>
+            <div class="flex items-center">
+                <span class="text-slate-500 font-medium mr-2">咨询师:</span>
+                <span class="font-semibold text-slate-800 editable-cell px-2 py-0.5 rounded" contenteditable="true">旷志伟</span>
+            </div>
+        </div>
+
+        <div class="p-6 md:p-8 space-y-6">
+
+            <!-- Today Summary Banner -->
+            <div class="bg-emerald-50/70 border border-emerald-100 rounded-xl p-4 md:p-5 flex flex-col md:flex-row gap-3 items-start">
+                <div class="flex items-center gap-2 text-emerald-800 font-bold shrink-0 md:w-32 pt-0.5">
+                    <i class="fa-solid fa-comment-dots text-emerald-600"></i>
+                    <span>今日一句话</span>
+                </div>
+                <div class="text-slate-700 leading-relaxed text-sm md:text-base editable-cell w-full rounded p-1" contenteditable="true">
+                    早上没起，下午和大家一起采购烧烤食材、回房休息，晚上大家一起烧烤、在露台唱歌玩耍，九点后回房休息，凌晨一点起床找水喝。
+                </div>
+            </div>
+
+            <!-- Section 1: 基本生活 -->
+            <div class="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                <div class="bg-slate-100 px-4 py-2.5 border-b border-slate-200 flex items-center gap-2 font-bold text-slate-700">
+                    <i class="fa-solid fa-house-user text-teal-600"></i>
+                    <span>基本生活</span>
+                </div>
+                <div class="divide-y divide-slate-100">
+                    <div class="p-4 flex flex-col md:flex-row gap-2 md:items-center">
+                        <span class="font-semibold text-slate-600 text-sm md:w-32 shrink-0">睡眠</span>
+                        <div class="text-slate-700 text-sm leading-relaxed editable-cell flex-1 p-1" contenteditable="true">
+                            早上没起，上午在房间休息；晚上和大家活动到九点后回房休息，凌晨一点起床找水喝，夜间有短醒。
+                        </div>
+                    </div>
+                    <div class="p-4 flex flex-col md:flex-row gap-2 md:items-center">
+                        <span class="font-semibold text-slate-600 text-sm md:w-32 shrink-0">饮食</span>
+                        <div class="text-slate-700 text-sm leading-relaxed editable-cell flex-1 p-1" contenteditable="true">
+                            早餐未吃，午餐、晚餐正常进食，晚上和大家一起吃烧烤。
+                        </div>
+                    </div>
+                    <div class="p-4 flex flex-col md:flex-row gap-2 md:items-center">
+                        <span class="font-semibold text-slate-600 text-sm md:w-32 shrink-0">活动与作息</span>
+                        <div class="text-slate-700 text-sm leading-relaxed editable-cell flex-1 p-1" contenteditable="true">
+                            下午和大家一起外出采购烧烤食材，晚上一起烧烤、在露台唱歌玩耍，九点后回房休息，凌晨一点起床找水喝。全天以集体活动为主，参与度高。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: 情绪 -->
+            <div class="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                <div class="bg-slate-100 px-4 py-2.5 border-b border-slate-200 flex items-center gap-2 font-bold text-slate-700">
+                    <i class="fa-solid fa-face-smile text-amber-500"></i>
+                    <span>情绪表现</span>
+                </div>
+                <div class="divide-y divide-slate-100">
+                    <div class="p-4 flex flex-col md:flex-row gap-2 md:items-center">
+                        <span class="font-semibold text-slate-600 text-sm md:w-32 shrink-0">心情状态</span>
+                        <div class="text-slate-700 text-sm leading-relaxed editable-cell flex-1 p-1" contenteditable="true">
+                            和大家一起烧烤、唱歌时情绪放松愉快，玩得投入，和大家相处很开心，没有出现烦躁或低落。
+                        </div>
+                    </div>
+                    <div class="p-4 flex flex-col md:flex-row gap-2 md:items-center">
+                        <span class="font-semibold text-slate-600 text-sm md:w-32 shrink-0">与人互动</span>
+                        <div class="text-slate-700 text-sm leading-relaxed editable-cell flex-1 p-1" contenteditable="true">
+                            和大家相处融洽，一起采购、一起烧烤、一起唱歌玩耍，配合度高，愿意一起做事、一起玩，全程不抵触。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: 行为表现 -->
+            <div class="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                <div class="bg-slate-100 px-4 py-2.5 border-b border-slate-200 flex items-center gap-2 font-bold text-slate-700">
+                    <i class="fa-solid fa-child-reaching text-blue-600"></i>
+                    <span>行为表现</span>
+                </div>
+                <div class="divide-y divide-slate-100">
+                    <div class="p-4 flex flex-col md:flex-row gap-2 md:items-center">
+                        <span class="font-semibold text-slate-600 text-sm md:w-32 shrink-0">主动表达</span>
+                        <div class="text-slate-700 text-sm leading-relaxed editable-cell flex-1 p-1" contenteditable="true">
+                            愿意把自己喜欢吃什么、想玩什么主动说出来，在集体里能自然表达，较前几日明显增多。
+                        </div>
+                    </div>
+                    <div class="p-4 flex flex-col md:flex-row gap-2 md:items-center">
+                        <span class="font-semibold text-slate-600 text-sm md:w-32 shrink-0">注意力与参与</span>
+                        <div class="text-slate-700 text-sm leading-relaxed editable-cell flex-1 p-1" contenteditable="true">
+                            采购食材、烧烤、露台唱歌全程投入、跟住节奏，没有走神或抵触，参与度高。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Highlight Card -->
+            <div class="bg-amber-50/80 border border-amber-200/80 rounded-xl p-4 md:p-5 flex flex-col md:flex-row gap-3 items-start">
+                <div class="flex items-center gap-2 text-amber-800 font-bold shrink-0 md:w-32 pt-0.5">
+                    <i class="fa-solid fa-star text-amber-500"></i>
+                    <span>今日小亮点</span>
+                </div>
+                <div class="text-slate-700 leading-relaxed text-sm md:text-base editable-cell w-full rounded p-1" contenteditable="true">
+                    主动和大家一起参与烧烤全流程，从采购食材、动手烧烤到露台唱歌玩耍都全程投入，和大家玩得很开心，集体融入度和参与度很高。
+                </div>
+            </div>
+
+            <!-- Total Evaluation Card -->
+            <div class="border-2 border-emerald-500/30 bg-emerald-50/30 rounded-xl p-5 relative overflow-hidden">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-3">
+                    <div class="flex items-center gap-2 text-slate-800 font-bold text-base">
+                        <i class="fa-solid fa-clipboard-check text-emerald-600"></i>
+                        <span>今日总评价</span>
+                    </div>
+                    
+                    <!-- Rating Interactive Stars -->
+                    <div class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-sm">
+                        <div id="star-rating" class="flex text-amber-400 text-lg cursor-pointer">
+                            <i class="fa-solid fa-star" onclick="setRating(1)"></i>
+                            <i class="fa-solid fa-star" onclick="setRating(2)"></i>
+                            <i class="fa-solid fa-star" onclick="setRating(3)"></i>
+                            <i class="fa-solid fa-star" onclick="setRating(4)"></i>
+                            <i class="fa-regular fa-star text-slate-300" onclick="setRating(5)"></i>
+                        </div>
+                        <span id="rating-text" class="text-xs font-bold text-amber-700 ml-1">4/5分</span>
+                    </div>
+                </div>
+
+                <div class="text-slate-700 text-sm leading-relaxed editable-cell rounded p-1" contenteditable="true">
+                    状态良好，参与集体烧烤活动投入、和大家相处愉快，融入度高；作息仍需继续调整。
+                </div>
+            </div>
+
+            <!-- Footer Explanation -->
+            <div class="pt-2 border-t border-slate-100 text-xs text-slate-400 leading-relaxed flex items-center gap-1">
+                <i class="fa-solid fa-circle-info"></i>
+                <span contenteditable="true">评分说明：5分=状态很好，进步明显；4分=状态良好、有正向变化；3分=平稳过渡；2分=状态偏低；1分=需要重点关注。</span>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let currentRating = 4;
+
+        function setRating(score) {
+            currentRating = score;
+            const container = document.getElementById('star-rating');
+            const stars = container.children;
+            
+            for (let i = 0; i < 5; i++) {
+                if (i < score) {
+                    stars[i].className = 'fa-solid fa-star';
+                } else {
+                    stars[i].className = 'fa-regular fa-star text-slate-300';
+                }
+            }
+            document.getElementById('rating-text').innerText = `${score}/5分`;
+        }
+
+        function resetData() {
+            if(confirm("确定要恢复默认初始文字吗？")) {
+                location.reload();
+            }
+        }
+    </script>
+</body>
+</html>
